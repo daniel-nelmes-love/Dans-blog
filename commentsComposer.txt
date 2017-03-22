@@ -1,0 +1,9 @@
+{
+	"require": {
+		// psr - PHP standard recommendation (the version of php being used)
+		"guzzlehttp/psr7": "^1.3"
+	}, 
+	"autoload": {
+
+	}
+}
