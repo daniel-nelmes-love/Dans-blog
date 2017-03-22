@@ -15,6 +15,21 @@ try {
 			$controller = new HomeController();
 			$controller->show();
 			break;
+
+		case 'blog':
+			$controller = new BlogController();
+			$controller->show();
+			break;
+
+		case 'blog.create':
+			$controller = new BlogController();
+			$controller->create();
+			break;
+
+		case 'blog.store':
+			$controller = new BlogController();
+			$controller->store();
+			break;
 		
 		default:
 			echo "Can't find page";

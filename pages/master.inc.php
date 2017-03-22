@@ -39,14 +39,14 @@
     					<span class="icon-bar"></span>
     					<span class="icon-bar"></span>
     				</button>
-    				<a class="navbar-brand" href="#">Dans blog</a>
+    				<a class="navbar-brand" href=".\">Dans blog</a>
     			</div>
 
     			<!-- Collect the nav links, forms, and other content for toggling -->
     			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
     				<ul class="nav navbar-nav">
-    					<li class="active"><a href="#">Home <span class="sr-only">(current)</span></a></li>
-    					<li><a href="#">Link</a></li>
+    					<li <?php if($page === "Home"): ?> class="active" <?php endif; ?>><a href=".\">Home</a></li>
+    					<li <?php if($page === "Blog"): ?> class="active" <?php endif; ?>><a href=".\?page=blog">Blog</a></li>
     				</ul>
     				<ul class="nav navbar-nav navbar-right">
 
@@ -55,11 +55,13 @@
     		</div><!-- /.container-fluid -->
     	</nav>
 
-
-    	<!-- This is where we want content to go -->
-    	<?php
-    		$this->content();
-    	?>
+    	<div class="container">
+    		<!-- This is where we want content to go -->
+	    	<?php
+	    		$this->content();
+	    	?>
+    	</div>
+	    	
 
     	<footer>
     		<p>&copy; <?php echo "copyright".date("Y");?></p>
