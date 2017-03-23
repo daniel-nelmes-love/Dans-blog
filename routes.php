@@ -6,17 +6,17 @@
 namespace App\Controllers;
 
 // ? is the or call on a variable if undefined
-$page = isset($_GET['page']) ? $_GET['page'] : 'home';
+$page = isset($_GET['page']) ? $_GET['page'] : 'Home';
 
 //Tries whatever is in the first block
 try {
 	switch ($page) {
-		case 'home':
+		case 'Home':
 			$controller = new HomeController();
 			$controller->show();
 			break;
 
-		case 'blog':
+		case 'Blog':
 			$controller = new BlogController();
 			$controller->show();
 			break;
@@ -29,6 +29,16 @@ try {
 		case 'blog.store':
 			$controller = new BlogController();
 			$controller->store();
+			break;
+
+		case 'About Me':
+			$controller = new AboutMeController();
+			$controller->show();
+			break;
+
+		case 'Contact Me':
+			$controller = new ContactMeController();
+			$controller->show();
 			break;
 		
 		default:

@@ -46,7 +46,9 @@
     			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
     				<ul class="nav navbar-nav">
     					<li <?php if($page === "Home"): ?> class="active" <?php endif; ?>><a href=".\">Home</a></li>
-    					<li <?php if($page === "Blog"): ?> class="active" <?php endif; ?>><a href=".\?page=blog">Blog</a></li>
+                        <li <?php if($page === "Blog"): ?> class="active" <?php endif; ?>><a href=".\?page=Blog">Blog</a></li>
+                        <li <?php if($page === "About Me"): ?> class="active" <?php endif; ?>><a href=".\?page=About Me">About Me</a></li>
+    					<li <?php if($page === "Contact Me"): ?> class="active" <?php endif; ?>><a href=".\?page=Contact Me">Contact Me</a></li>
     				</ul>
     				<ul class="nav navbar-nav navbar-right">
 
