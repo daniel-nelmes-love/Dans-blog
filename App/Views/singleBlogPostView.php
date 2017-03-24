@@ -2,18 +2,18 @@
 
 namespace App\Views;
 
-class BlogCreateview extends View {
+class singleBlogPostView extends View {
 	public function render() {
 		extract($this->data);
-		$page = 'Blog Create';
-		$page_title = "BlogC vreate";
-		$page_dec = "Create a blog post";
+		$page = 'blogPost';
+		$page_title = "$blogPost->title";
+		$page_dec = "";
 		include "pages/master.inc.php";
 	}
 
 	protected function content() {
 		extract($this->data);
-		require "pages/blogCreate.inc.php";
+		require "pages/singleblogpost.inc.php";
 	}
 }
 

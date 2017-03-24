@@ -31,6 +31,11 @@ try {
 			$controller->store();
 			break;
 
+		case 'blog.post':
+			$controller = new BlogController();
+			$controller->singleBlogPost();
+			break;
+
 		case 'About Me':
 			$controller = new AboutMeController();
 			$controller->show();

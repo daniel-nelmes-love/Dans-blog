@@ -10,5 +10,12 @@ error_reporting(E_ALL);
 //Will always use it as it is required. Installed through terminals "composer install" line
 require 'vendor/autoload.php';
 
+//Need to turn on sessions
+session_start();
+session_regenerate_id(true);
+
 //Routes tell us which page/function is being loaded and what to load
 require 'routes.php';
+
+// Test the connection
+// require 'databaseTest.php';
