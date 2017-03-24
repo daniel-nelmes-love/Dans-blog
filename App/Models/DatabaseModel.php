@@ -21,6 +21,11 @@ abstract class DatabaseModel {
 			}
 		}
 
+		//Find to see if there is a database entry
+		if (is_integer($input)&&$input > 0) {
+			$this->find($input);
+		}
+
 		if (is_array($input)) {
 			//If there is something in the var $input
 			$this->processArray($input);
@@ -137,7 +142,24 @@ abstract class DatabaseModel {
 		$statement->execute();
 
 		//Get the id of the query which was just added
-		$this->id = $db->lastInsertId();
+		$this->id = $db->lastInsertID();
+	}
+
+	public function find($id) {
+		$db = static::getDatabaseConnection();
+		//Create a select query
+		$query = 'SELECT '.implode(',', static::$columns).' FROM '.static::$tableName.' WHERE id = :id';
+		//prepare the query
+		$statement = $db->prepare($query);
+		//Find the column with id
+		$statement->bindValue(':id', $id);
+		$statement->execute();
+
+		//Put the associated row into a var
+		$record = $statement->fetch(PDO::FETCH_ASSOC);
+
+		//Put the record into the data variable
+		$this->data = $record;
 	}
 }
 

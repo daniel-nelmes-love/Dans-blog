@@ -47,7 +47,7 @@ class BlogController extends Controller {
 		//Run thesave function in the database controller
 		$blogPost->save();
 		//Go to that blog post
-		header("Location:./?page=blog.post&id=".$blogPost->$id);
+		header("Location:./?page=blog.post&id=".$blogPost->id);
 	}
 
 	public function singleBlogPost() {
