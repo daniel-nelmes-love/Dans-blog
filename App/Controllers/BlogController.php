@@ -10,8 +10,11 @@ use App\Models\Blog;
 class BlogController extends Controller {
 	//This function name must match the one in your routes
 	public function show() {
+		$blogs = Blog::all();
+		// $blogBount = Blog::count();
 		//Tell php what view you want to open
-		$view = new BlogView();
+		//When parsing more than one variable the use compact('var1', 'var2', ...) without the $ signs on the variables
+		$view = new BlogView(compact('blogs', 'blogCount'));
 		$view->render();
 	}
 
@@ -65,5 +68,47 @@ class BlogController extends Controller {
 			$blogpost = new Blog((int)$id);
 		}
 		return $blogpost;
+	}
+
+	public function edit() {
+		$blogPost = $this->getFormData($_GET['id']);
+		$view = new BlogCreateView(['blogPost'=>$blogPost]);
+		$view->render();
+	}
+
+	public function update() {
+		$blogPost = new Blog((int)$_GET['id']);
+		$blogPost->processArray($_POST);
+
+		if (! $blogPost->isValid()) {
+			$_SESSION['blog.create'] = $blogPost;
+			header('Location: .\?page=blog.edit&id='.$_GET['id']);
+			exit();
+		}
+
+		if ($_FILES['image']['error'] === UPLOAD_ERR_OK) {
+			//Remove old images
+			unlink('./images/originals/$blogPost->image');
+			unlink('./images/thumbs/$blogPost->image');
+			$blogPost->saveImage($_FILES['image']['tmp_name']);
+
+		} else if (isset($_POST['removeImage'])&&($_POST['removeImage']==='true')) {
+			$blogPost->image = null;
+			unlink('./images/originals/$blogPost->image');
+			unlink('./images/thumbs/$blogPost->image');
+		}
+
+		$blogPost->updateDatabase();
+		header('Location: .\?page=blog.post&id=' . $blogPost->id);
+	}
+
+	public function remove() {
+		$blogPost = new Blog((int)$_POST['id']);
+		if (isset($blogPost->image)) {
+			unlink('./images/originals/$blogPost->image');
+			unlink('./images/thumbs/$blogPost->image');
+		}
+		Blog::DatabaseRemove($_POST['id']);
+		header("Location: .\?page=Blog");
 	}
 }

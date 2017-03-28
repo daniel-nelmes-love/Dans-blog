@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 24, 2017 at 05:11 am
+-- Generation Time: Mar 28, 2017 at 06:21 am
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 7.0.9
 
@@ -39,17 +39,30 @@ CREATE TABLE `blogpost` (
 --
 
 INSERT INTO `blogpost` (`id`, `title`, `description`, `image`, `timeStamp`) VALUES
-(1, 'asd', 'asdasdasdasd', NULL, '2017-03-24 03:47:32'),
-(2, 'asd', 'asdasdasdasd', NULL, '2017-03-24 03:47:42'),
-(3, 'asd', 'asdasdasdasd', NULL, '2017-03-24 03:53:51'),
-(4, 'asdasd', 'asdasdasdasd', NULL, '2017-03-24 03:54:11'),
-(5, 'asdasd', 'asdasdasdasdas', NULL, '2017-03-24 03:54:58'),
-(6, 'asdasd', 'asdasdasda', NULL, '2017-03-24 03:55:49'),
-(7, 'asdasd', 'asdasdasda', NULL, '2017-03-24 03:56:04'),
-(8, 'asdasd', 'asdasdasdasd', NULL, '2017-03-24 03:57:12'),
-(9, 'asda', 'asdasdasdasd', NULL, '2017-03-24 04:05:41'),
-(10, 'asdasd', 'asdasdasdasd', NULL, '2017-03-24 04:06:33'),
-(11, 'asd', 'asdasdaasd', NULL, '2017-03-24 04:07:54');
+(13, 'Test 1', 'Test blog post 1', '58d9c42d3d392.jpeg', '2017-03-28 00:07:16'),
+(14, 'Test 2', 'Test blog post 2', '58d9ab13a98f8.jpeg', '2017-03-28 00:15:15');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` tinyint(15) UNSIGNED NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `email` varchar(200) CHARACTER SET utf8 NOT NULL,
+  `password` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `role` enum('user','admin') NOT NULL DEFAULT 'user'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `email`, `password`, `role`) VALUES
+(1, 'Test', 'russandjo@outlook.com', '$2y$10$1WPtw53VDF6fEhSfvyONOuPp4yipb2BuSRVKdSTg9Dv4pXy6hAnee', 'user'),
+(2, 'Test', 'Test@hotmail.com', '$2y$10$xUlo/SzVoGrLqPbCK8p5H.Xu1ZiWtfbT0YKw0N/Nvp1esiCVfurTW', 'user');
 
 --
 -- Indexes for dumped tables
@@ -63,6 +76,12 @@ ALTER TABLE `blogpost`
   ADD UNIQUE KEY `image` (`image`);
 
 --
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -70,7 +89,12 @@ ALTER TABLE `blogpost`
 -- AUTO_INCREMENT for table `blogpost`
 --
 ALTER TABLE `blogpost`
-  MODIFY `id` tinyint(15) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` tinyint(15) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` tinyint(15) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

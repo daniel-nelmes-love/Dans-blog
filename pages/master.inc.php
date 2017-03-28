@@ -52,6 +52,16 @@
     				</ul>
     				<ul class="nav navbar-nav navbar-right">
 
+                    <?php if (! static::$auth->check()): ?>
+
+                        <li <?php if($page === "Login"): ?> class="active" <?php endif; ?>><a href=".\?page=Login">Login</a></li>
+                        <li <?php if($page === "Register"): ?> class="active" <?php endif; ?>><a href=".\?page=Register">Register</a></li>
+
+                    <?php else: ?>
+
+                        <li><?= static::$auth->user()->email; ?></li>
+                        <li><a href=".\?page=logout">Logout</a></li>
+                    <?php endif; ?>
     				</ul>
     			</div><!-- /.navbar-collapse -->
     		</div><!-- /.container-fluid -->
